@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Web Content Mining - Nurul Vicky Wahdaniah</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Web Content Mining";
+    var mkdocs_page_input_path = "web1.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Nurul Vicky Wahdaniah</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Web Content Mining</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#web-crawling-web-content-mining">WEB CRAWLING (Web Content Mining)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#pendahuluan">Pendahuluan</a></li>
+        
+            <li><a class="toctree-l3" href="#crawling">Crawling</a></li>
+        
+            <li><a class="toctree-l3" href="#pre-processing">Pre-Processing</a></li>
+        
+            <li><a class="toctree-l3" href="#tf-idf">TF - IDF</a></li>
+        
+            <li><a class="toctree-l3" href="#feature-selection">Feature Selection</a></li>
+        
+            <li><a class="toctree-l3" href="#clustering">Clustering</a></li>
+        
+            <li><a class="toctree-l3" href="#kode-keseluruhan-program">Kode Keseluruhan Program</a></li>
+        
+            <li><a class="toctree-l3" href="#references">References</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../web2/">Web Structure Mining</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Nurul Vicky Wahdaniah</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Web Content Mining</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="web-crawling-web-content-mining">WEB CRAWLING (Web Content Mining)</h1>
+<blockquote>
+<p>Web Content Mining merupakan proses untuk mengambil,mengolah, memanipulasi data Text, Video, dan lain - lain pada sebuah website.</p>
+</blockquote>
+<h2 id="pendahuluan">Pendahuluan</h2>
+<p>Halaman ini berisi tentang langkah - langkah crawling data dari sebuah website, kemudian dilanjutkan dengan pre-processing, seleksi fitur hingga clustering data.</p>
+<h4 id="tools-and-requirements">Tools and Requirements**</h4>
+<ol>
+<li>
+<p>Website URL : https://www.malasngoding.com/</p>
+</li>
+<li>
+<p>Python 3.6</p>
+</li>
+<li>
+<p>Python Libraries :</p>
+</li>
+<li>
+<p>BeautifulSoup4</p>
+<p>Berfungsi untuk mengcrawl data pada website. </p>
+<p>Cara menginstall BeautifulSoup4 menggunakan pip :</p>
+</li>
+</ol>
+<p><code>pip install beautifulsoup4</code></p>
+<ul>
+<li>
+<p>SQLite3</p>
+<p>Berfungsi sebagai Database untuk penyimpanan data dari website.</p>
+</li>
+<li>
+<p>CSV</p>
+<p>Berfungsi untuk read and write tabular data dalam format CSV.</p>
+<p>Cara menginstall CSV module menggunakan pip :</p>
+<p><code>pip install python-csv</code></p>
+</li>
+<li>
+<p>Sastrawi</p>
+<p>Berfungsi untuk steeming pada bagian pre-processing data. Steeming bertujuan untuk mentransformasikan kata menjadi kata dasar tanpa imbuhan, baik awalan, akhiran atau sisipan.</p>
+<p>Casa menginstall Sastrawi menggunakan pip :</p>
+<p><code>pip install Sastrawi</code></p>
+</li>
+<li>
+<p>Math</p>
+<p>Berfungsi pada proses-proses yang menggunakan fungsi matematika.</p>
+<p>Cara menginstall modul Math menggunakan pip :</p>
+<p><code>pip install math</code></p>
+</li>
+<li>
+<p>Numpy</p>
+<p>Berfungsi untuk operasi vektor dan matriks untuk keperluan analisis data.</p>
+<p>Cara menginstall Numpy menggunakan pip :</p>
+<p><code>pip install numpy</code></p>
+</li>
+<li>
+<p>Sckit-Learn</p>
+<p>Berfungsi memberikan sejumlah fitur untuk keperluan data science seperti Algoritma Regresi, Algoritma Naive Bayes, Algoritma Clustering, Algoritma Decision Tree, Data Prepocessing Tool, dan lain - lain.</p>
+<p>Cara menginstall Sckit-Learn menggunakan pip :</p>
+<p><code>pip install scikit-learn</code></p>
+</li>
+<li>
+<p>Sckit-Fuzzy</p>
+<p>Merupakan kumpulan dari algoritma fuzzy yang digunakan pada modul SciPy atau SkLearn.</p>
+<p>Cara menginstall Sckit-Fuzzy menggunakan pip :</p>
+<p><code>pip install scikit-fuzzy</code></p>
+</li>
+<li>
+<p>Database KBI</p>
+</li>
+</ul>
+<p>Digunakan pada proses pre-processing untuk memisahkan kata penting pada data.</p>
+<h2 id="_1"></h2>
+<h2 id="crawling">Crawling</h2>
+<blockquote>
+<p>Website URL : https://www.malasngoding.com/</p>
+</blockquote>
+<p><img alt="1556795700654" src="C:\Users\Hp\AppData\Roaming\Typora\typora-user-images\1556795700654.png" /></p>
+<p>Data yang diambil dari website di atas berupa data Text, yaitu Judul Artikel dan Isi Artikel.</p>
+<h4 id="langkah-proses-crawling"><strong>Langkah Proses Crawling :</strong></h4>
+<ul>
+<li>
+<h5 id="import-library-yang-akan-digunakan-untuk-crawl-data">import library yang akan digunakan untuk crawl data.</h5>
+</li>
+</ul>
+<p><code>from bs4 import BeautifulSoup</code></p>
+<ul>
+<li>
+<h5 id="request-pada-halaman-web-tertuju">Request pada halaman web tertuju.</h5>
+</li>
+</ul>
+<p><code>src = "https://www.malasngoding.com/"
+  page = requests.get(src)
+  soup = BeautifulSoup(page.content, 'html.parser')</code></p>
+<ul>
+<li>
+<h5 id="simpan-elemendata-judul-dan-isi-yang-akan-di-crawl-pada-variabel-berdasar-class-pada-tag-html-web-tertuju">simpan elemen/data (judul dan isi) yang akan di crawl pada variabel berdasar class pada tag html web tertuju.</h5>
+</li>
+</ul>
+<p><code>linkhead = soup.findAll(class_='text-dark')
+  pagination = soup.find(class_='next page-numbers')</code></p>
+<blockquote>
+<p>code di atas merupakan variabel penampung untuk link yang menuju judul dan isi artikel</p>
+</blockquote>
+<pre><code>  konten = soup.find('article')
+  title = konten.find(class_='post-title entry-title pb-2').getText()
+  temp = konten.findAll('p')
+</code></pre>
+<blockquote>
+<p>code di atas merupakan variabel yang menampung judul dan isi artikel</p>
+</blockquote>
+<ul>
+<li>
+<h5 id="masukkan-data-ke-dalam-database">Masukkan data ke dalam Database.</h5>
+</li>
+</ul>
+<p><code>conn = sqlite3.connect('articles.sqlite')
+  conn.execute('''CREATE TABLE if not exists ARTICLES
+                  (TITLE         TEXT     NOT NULL,
+                   ISI         TEXT     NOT NULL);''')
+  conn.execute("INSERT INTO ARTICLES (TITLE, ISI) VALUES (?, ?)", (title, isif));
+  conn.commit()</code></p>
+<ul>
+<li>
+<h5 id="export-data-ke-dalam-format-csv">export data ke dalam format CSV</h5>
+</li>
+</ul>
+<p><code>def write_csv(nama_file, isi, tipe='w'):
+      'tipe=w; write; tipe=a; append;'
+      with open(nama_file, mode=tipe) as tbl:
+          tbl_writer = csv.writer(tbl, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+          for row in isi:
+              tbl_writer.writerow(row)</code></p>
+<h4 id="kode-program-lengkap-proses-crawling"><strong>Kode Program Lengkap Proses Crawling :</strong></h4>
+<pre><code>conn = sqlite3.connect('articles.sqlite')
+conn.execute('''CREATE TABLE if not exists ARTICLES
+                (TITLE         TEXT     NOT NULL,
+                 ISI         TEXT     NOT NULL);''')
+conn.commit()
+
+src = &quot;https://www.malasngoding.com/&quot;
+
+n = 1
+while n &lt;= 2:
+    print(&quot;page &quot;,n)
+    page = requests.get(src)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    linkhead = soup.findAll(class_='text-dark')
+    pagination = soup.find(class_='next page-numbers')
+
+    for links in linkhead:
+        try :
+            src = links['href']
+            page = requests.get(src)
+            soup = BeautifulSoup(page.content, 'html.parser')
+
+            konten = soup.find('article')
+            title = konten.find(class_='post-title entry-title pb-2').getText()
+
+            temp = konten.findAll('p')
+            isi = []
+            for j in range(len(temp)):
+                isi += [temp[j].getText()]
+
+            isif = &quot;&quot;
+            for i in isi:
+                isif += i
+            conn.execute(&quot;INSERT INTO ARTICLES (TITLE, ISI) VALUES (?, ?)&quot;, (title, isif));
+
+        except AttributeError:
+            continue
+    conn.commit()
+    src = pagination['href']
+
+    n+=1
+
+def write_csv(nama_file, isi, tipe='w'):
+    'tipe=w; write; tipe=a; append;'
+    with open(nama_file, mode=tipe) as tbl:
+        tbl_writer = csv.writer(tbl, delimiter=',', quotechar='&quot;', quoting=csv.QUOTE_MINIMAL)
+        for row in isi:
+            tbl_writer.writerow(row)
+</code></pre>
+
+<h2 id="pre-processing">Pre-Processing</h2>
+<p>Pre-processing merupakan tahapan dimana program melakukan seleksi data yang akan di proses. Proses Pre-Processing meliputi :</p>
+<ol>
+<li>Case Folding</li>
+</ol>
+<p>Case Folding dibutuhkan dalam mengkonversi keseluruhan text dalam dokumen menjadi suatu bentuk standar/lower case. Lebih ringkasnya, case folding mengubah semua huruf dalam dokumen menjadi huruf kecil. hara huruf 'a' sampai 'z' yang diterima. Karakter selain huruf akan dihilangkan.</p>
+<ol>
+<li>Tokenizing</li>
+</ol>
+<p>Tahap tokenizing merupakan tahap pemecahan kalimat menjadi beberapa kata tunggal. </p>
+<ol>
+<li>Filtering (Stopword)</li>
+</ol>
+<p>Tahap filtering adalah tahap mengambil kata-kata penting dari hasil token.</p>
+<p>Stopword adalah kata-kata yang tidak deskriptif yang dapat dibuang dalam pendekatan bag-of-words.</p>
+<ol>
+<li>Stemming</li>
+</ol>
+<p>Sremming diperlukan untuk memperkecil jumlah indeks yang berbeda dari suatu dokumen, juga untuk melakukan pengelompokan kata-kata lain yang memiliki kata dasar dan arti yang serupa namun memiliki bentuk atau form yang berbeda karena mendapat imbuhan yang berbeda.</p>
+<h4 id="kode-program-pre-processing"><strong>Kode Program Pre-Processing</strong></h4>
+<pre><code>cursor = conn.execute(&quot;SELECT* from ARTICLES&quot;)
+isif =''
+for row in cursor:
+    isif+=row[1]
+factory = StopWordRemoverFactory() 
+stopword = factory.create_stop_word_remover()
+
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+factory = StemmerFactory()
+stemmer = factory.create_stemmer()
+stop = stopword.remove(isif)
+stem = stemmer.stem(stop)
+katadasar = stem.split()
+
+matrix=[]
+
+for row in cursor:
+    tampung = []
+    for i in katadasar:
+        tampung.append(row[1].lower().count(i))
+    matrix.append(tampung)
+
+write_csv(&quot;kata_before_%s.csv&quot;%n, katadasar)
+
+conn = sqlite3.connect('KBI.db')
+cur_kbi = conn.execute(&quot;SELECT* from KATA&quot;)
+
+
+def LinearSearch (kbi,kata):
+    found=False
+    posisi=0
+    while posisi &lt; len (kata) and not found :
+        if kata[posisi]==kbi:
+            found=True
+        posisi=posisi+1
+    return found
+
+berhasil=[]
+berhasil2=''
+for kata in cur_kbi :
+    ketemu=LinearSearch(kata[0],katadasar)
+    if ketemu :
+        kata = kata[0]
+        berhasil.append(kata)
+        berhasil2=berhasil2+' '+kata
+</code></pre>
+
+<h2 id="tf-idf">TF - IDF</h2>
+<ul>
+<li>
+<h4 id="tf-term-frequency"><strong>TF (Term Frequency)</strong></h4>
+</li>
+</ul>
+<p>TF (Term Frequency) adalah frekuensi dari kemunculan sebuah term dalam dokumen yang bersangkutan. Semakin besar jumlah kemunculan suatu term (TF tinggi) dalam dokumen, semakin besar pula bobotnya atau akan memberikan nilai kesesuaian yang semakin besar.</p>
+<ul>
+<li>
+<h4 id="idf-inverse-document-frequency"><strong>IDF (Inverse Document Frequency)</strong></h4>
+</li>
+</ul>
+<p>IDF (Inverse Document Frequency) merupakan sebuah perhitungan dari bagaimana term didistribusikan secara luas pada koleksi dokumen yang bersangkutan. IDF menunjukkan hubungan ketersediaan sebuah term dalam seluruh dokumen. Semakin sedikit jumlah dokumen yang mengandung term yang dimaksud, maka nilai IDF semakin besar.</p>
+<h4 id="kode-program-tf-idf"><strong>Kode Program TF-IDF</strong></h4>
+<pre><code>#TF
+df = list()
+for d in range (len(matrix2[0])):
+    total = 0
+    for i in range(len(matrix2)):
+        if matrix2[i][d] !=0:
+            total += 1
+    df.append(total)
+
+#IDF
+idf = list()
+for i in df:
+    tmp = 1 + log10(len(matrix2)/(1+i))
+    idf.append(tmp)
+
+tf = matrix2
+tfidf = []
+for baris in range(len(matrix2)):
+    tampungBaris = []
+    for kolom in range(len(matrix2[0])):
+        tmp = tf[baris][kolom] * idf[kolom]
+        tampungBaris.append(tmp)
+    tfidf.append(tampungBaris)
+write_csv(&quot;tfidf_%s.csv&quot;%n, tfidf)
+</code></pre>
+
+<h2 id="feature-selection">Feature Selection</h2>
+<p>Seleksi fitur adalah salah satu tahapan praproses klasifikasi. Seleksi fitur dilakukan dengan cara memilih fitur-fitur yang relevan yang mempengaruhi hasil klasifikasi. Seleksi fitur digunakan untuk mengurangi dimensi data dan fitur-fitur yang tidak relevan. Seleksi fitur digunakan untuk meningkatkan efektifitas dan efisiensi kinerja dari algoritma klasifikasi.</p>
+<h4 id="kode-program-seleksi-fitur"><strong>Kode Program Seleksi Fitur</strong></h4>
+<pre><code>def pearsonCalculate(data, u,v):
+    &quot;i, j is an index&quot;
+    atas=0; bawah_kiri=0; bawah_kanan = 0
+    for k in range(len(data)):
+        atas += (data[k,u] - meanFitur[u]) * (data[k,v] - meanFitur[v])
+        bawah_kiri += (data[k,u] - meanFitur[u])**2
+        bawah_kanan += (data[k,v] - meanFitur[v])**2
+    bawah_kiri = bawah_kiri ** 0.5
+    bawah_kanan = bawah_kanan ** 0.5
+    return atas/(bawah_kiri * bawah_kanan)
+def meanF(data):
+    meanFitur=[]
+    for i in range(len(data[0])):
+        meanFitur.append(sum(data[:,i])/len(data))
+    return np.array(meanFitur)
+def seleksiFiturPearson(data, threshold, berhasil):
+    global meanFitur
+    data = np.array(data)
+    meanFitur = meanF(data)
+    u=0
+    while u &lt; len(data[0]):
+        dataBaru=data[:, :u+1]
+        meanBaru=meanFitur[:u+1]
+        seleksikata=berhasil[:u+1]
+        v = u
+        while v &lt; len(data[0]):
+            if u != v:
+                value = pearsonCalculate(data, u,v)
+                if value &lt; threshold:
+                    dataBaru = np.hstack((dataBaru, data[:, v].reshape(data.shape[0],1)))
+                    meanBaru = np.hstack((meanBaru, meanFitur[v]))
+                    seleksikata = np.hstack((seleksikata, berhasil[v]))
+            v+=1
+        data = dataBaru
+        meanFitur=meanBaru
+        berhasil=seleksikata
+        if u%50 == 0 : print(&quot;proses : &quot;, data.shape)
+        u+=1
+    return data, seleksikata
+
+xBaru2,kataBaru = seleksiFiturPearson(tfidf, 0.9, berhasil)
+xBaru1,kataBaru2 = seleksiFiturPearson(xBaru2, 0.8, berhasil)
+
+write_csv(&quot;kata_pearson_%s.csv&quot;%n, kataBaru2)
+</code></pre>
+
+<h2 id="clustering">Clustering</h2>
+<p>Clustering merupakan proses pengelompokan data dengan karakteristik yang sama ke suatu kelompok dan data dengan karakteristik berbeda ke kelompok yang lain.</p>
+<p>Metode yang digunakan dalam clustering ini yaitu menggunakan metode K- Mean dengan pendekatan Fuzzy.</p>
+<p>Setelah data di cluster, langkah berikutnya adalah menghitung nilai koefisien Silhouette.</p>
+<h4 id="kode-program-clustering"><strong>Kode Program Clustering</strong></h4>
+<pre><code>print(&quot;Cluster dgn Seleksi Fitur : 0.8&quot;)
+cntr, u, u0, distant, fObj, iterasi, fpc =  fuzz.cmeans(xBaru1.T, 3, 2, 0.00001, 1000, seed=0)
+membership = np.argmax(u, axis=0)
+
+silhouette = silhouette_samples(xBaru1, membership)
+s_avg = silhouette_score(xBaru1, membership, random_state=10)
+
+for i in range(len(tfidf)):
+    print(&quot;c &quot;+str(membership[i]))
+print(s_avg)
+</code></pre>
+
+<h2 id="kode-keseluruhan-program">Kode Keseluruhan Program</h2>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+import sqlite3
+import csv
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
+from math import log10
+import numpy as np
+from sklearn.metrics import silhouette_samples, silhouette_score
+import skfuzzy as fuzz
+
+
+conn = sqlite3.connect('articles.sqlite')
+conn.execute('''CREATE TABLE if not exists ARTICLES
+                (TITLE         TEXT     NOT NULL,
+                 ISI         TEXT     NOT NULL);''')
+conn.commit()
+
+src = &quot;https://www.malasngoding.com/&quot;
+n = 1
+while n &lt;= 2:
+    print(&quot;page &quot;,n)
+    page = requests.get(src)
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    linkhead = soup.findAll(class_='text-dark')
+    pagination = soup.find(class_='next page-numbers')
+
+    for links in linkhead:
+        try :
+            src = links['href']
+            page = requests.get(src)
+            soup = BeautifulSoup(page.content, 'html.parser')
+
+            konten = soup.find('article')
+            title = konten.find(class_='post-title entry-title pb-2').getText()
+
+            temp = konten.findAll('p')
+            isi = []
+            for j in range(len(temp)):
+                isi += [temp[j].getText()]
+
+            isif = &quot;&quot;
+            for i in isi:
+                isif += i
+            conn.execute(&quot;INSERT INTO ARTICLES (TITLE, ISI) VALUES (?, ?)&quot;, (title, isif));
+
+        except AttributeError:
+            continue
+    conn.commit()
+    src = pagination['href']
+
+    n+=1
+#function write csv
+def write_csv(nama_file, isi, tipe='w'):
+    'tipe=w; write; tipe=a; append;'
+    with open(nama_file, mode=tipe) as tbl:
+        tbl_writer = csv.writer(tbl, delimiter=',', quotechar='&quot;', quoting=csv.QUOTE_MINIMAL)
+        for row in isi:
+            tbl_writer.writerow(row)
+
+#preproccessing - stopword(menghilangkan imbuhan)
+cursor = conn.execute(&quot;SELECT* from ARTICLES&quot;)
+isif =''
+for row in cursor:
+    isif+=row[1]
+    ##print(row)
+
+factory = StopWordRemoverFactory() #katadasar
+stopword = factory.create_stop_word_remover()
+
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+factory = StemmerFactory()
+stemmer = factory.create_stemmer()
+stop = stopword.remove(isif)
+#steming - mengambil kata dasar
+stem = stemmer.stem(stop)
+katadasar = stem.split()
+
+matrix=[]
+#cursor = conn.execute(&quot;SELECT* from ARTIKEL&quot;)
+
+for row in cursor:
+    tampung = []
+    for i in katadasar:
+        tampung.append(row[1].lower().count(i))
+    matrix.append(tampung)
+
+#print(katadasar)
+
+write_csv(&quot;kata_before_%s.csv&quot;%n, katadasar)
+
+#nganu kbi
+#Sharing kata Sesuai KBI Belum VSM
+conn = sqlite3.connect('KBI.db')
+cur_kbi = conn.execute(&quot;SELECT* from KATA&quot;)
+
+
+def LinearSearch (kbi,kata):
+    found=False
+    posisi=0
+    while posisi &lt; len (kata) and not found :
+        if kata[posisi]==kbi:
+            found=True
+        posisi=posisi+1
+    return found
+
+berhasil=[]
+berhasil2=''
+for kata in cur_kbi :
+    ketemu=LinearSearch(kata[0],katadasar)
+    if ketemu :
+        kata = kata[0]
+        berhasil.append(kata)
+        berhasil2=berhasil2+' '+kata
+#print(berhasil)
+#menghitung tf-idf = menghitung jumlah fitur/kata
+        #df = menghitung frekuensi - 
+conn = sqlite3.connect('articles.sqlite')
+matrix2=[]
+cursor = conn.execute(&quot;SELECT* from ARTICLES&quot;)
+for row in cursor:
+    tampung = []
+    for i in berhasil:
+        tampung.append(row[1].lower().count(i))
+        #print(tampung)
+        #print(row[2])
+    matrix2.append(tampung)
+#print(matrix2)
+#import csv kata yg sesuai dengan KBI
+
+write_csv(&quot;kata_after_%s.csv&quot;%n, berhasil)
+
+#tf-idf
+df = list()
+for d in range (len(matrix2[0])):
+    total = 0
+    for i in range(len(matrix2)):
+        if matrix2[i][d] !=0:
+            total += 1
+    df.append(total)
+
+idf = list()
+for i in df:
+    tmp = 1 + log10(len(matrix2)/(1+i))
+    idf.append(tmp)
+
+tf = matrix2
+tfidf = []
+for baris in range(len(matrix2)):
+    tampungBaris = []
+    for kolom in range(len(matrix2[0])):
+        tmp = tf[baris][kolom] * idf[kolom]
+        tampungBaris.append(tmp)
+    tfidf.append(tampungBaris)
+
+
+write_csv(&quot;tfidf_%s.csv&quot;%n, tfidf)
+
+#seleksi fitur
+def pearsonCalculate(data, u,v):
+    &quot;i, j is an index&quot;
+    atas=0; bawah_kiri=0; bawah_kanan = 0
+    for k in range(len(data)):
+        atas += (data[k,u] - meanFitur[u]) * (data[k,v] - meanFitur[v])
+        bawah_kiri += (data[k,u] - meanFitur[u])**2
+        bawah_kanan += (data[k,v] - meanFitur[v])**2
+    bawah_kiri = bawah_kiri ** 0.5
+    bawah_kanan = bawah_kanan ** 0.5
+    return atas/(bawah_kiri * bawah_kanan)
+def meanF(data):
+    meanFitur=[]
+    for i in range(len(data[0])):
+        meanFitur.append(sum(data[:,i])/len(data))
+    return np.array(meanFitur)
+def seleksiFiturPearson(data, threshold, berhasil):
+    global meanFitur
+    data = np.array(data)
+    meanFitur = meanF(data)
+    u=0
+    while u &lt; len(data[0]):
+        dataBaru=data[:, :u+1]
+        meanBaru=meanFitur[:u+1]
+        seleksikata=berhasil[:u+1]
+        v = u
+        while v &lt; len(data[0]):
+            if u != v:
+                value = pearsonCalculate(data, u,v)
+                if value &lt; threshold:
+                    dataBaru = np.hstack((dataBaru, data[:, v].reshape(data.shape[0],1)))
+                    meanBaru = np.hstack((meanBaru, meanFitur[v]))
+                    seleksikata = np.hstack((seleksikata, berhasil[v]))
+            v+=1
+        data = dataBaru
+        meanFitur=meanBaru
+        berhasil=seleksikata
+        if u%50 == 0 : print(&quot;proses : &quot;, data.shape)
+        u+=1
+    return data, seleksikata
+
+xBaru2,kataBaru = seleksiFiturPearson(tfidf, 0.9, berhasil)
+xBaru1,kataBaru2 = seleksiFiturPearson(xBaru2, 0.8, berhasil)
+
+write_csv(&quot;kata_pearson_%s.csv&quot;%n, kataBaru2)
+#clustering
+print(&quot;Cluster dgn Seleksi Fitur : 0.8&quot;)
+cntr, u, u0, distant, fObj, iterasi, fpc =  fuzz.cmeans(xBaru1.T, 3, 2, 0.00001, 1000, seed=0)
+membership = np.argmax(u, axis=0)
+
+silhouette = silhouette_samples(xBaru1, membership)
+s_avg = silhouette_score(xBaru1, membership, random_state=10)
+
+for i in range(len(tfidf)):
+    print(&quot;c &quot;+str(membership[i]))#+&quot;\t&quot; + str(silhouette[i]))
+print(s_avg)
+#kmeans = KMeans(n_clusters=3, random_state=0).fit(xBaru)
+#print(kmeans.labels_)
+
+write_csv(&quot;Cluster%sFS8.csv&quot;%n, [[&quot;Cluster&quot;]])
+write_csv(&quot;Cluster%sFS8.csv&quot;%n, [membership],        &quot;a&quot;)
+write_csv(&quot;Cluster%sFS8.csv&quot;%n, [[&quot;silhouette&quot;]],    &quot;a&quot;)
+write_csv(&quot;Cluster%sFS8.csv&quot;%n, [silhouette],        &quot;a&quot;)
+write_csv(&quot;Cluster%sFS8.csv&quot;%n, [[&quot;Keanggotaan&quot;]],   &quot;a&quot;)
+write_csv(&quot;Cluster%sFS8.csv&quot;%n, u,                   &quot;a&quot;)
+write_csv(&quot;Cluster%sFS8.csv&quot;%n, [[&quot;pusat Cluster&quot;]], &quot;a&quot;)
+write_csv(&quot;Cluster%sFS8.csv&quot;%n, cntr,                &quot;a&quot;)
+
+</code></pre>
+
+<h2 id="references">References</h2>
+<p><a href="https://www.malasngoding.com/">https://www.malasngoding.com/</a></p>
+<p><a href="http://www.teknologi-bigdata.com/2016/07/web-crawling-di-era-big-data.html">http://www.teknologi-bigdata.com/2016/07/web-crawling-di-era-big-data.html</a></p>
+<p>https://yudiagusta.wordpress.com/clustering/</p>
+<p>https://informatikalogi.com/text-preprocessing/amp/</p>
+<p><a href="https://devtrik.com/python/steeming-bahasa-indonesia-python-sastrawi/">https://devtrik.com/python/steeming-bahasa-indonesia-python-sastrawi/</a></p>
+<p><a href="https://informatikalogi.com/term-weighting-tf-idf/">https://informatikalogi.com/term-weighting-tf-idf/</a></p>
+<p><a href="https://wahyudisetiawan.wordpress.com/tag/seleksi-fitur/">https://wahyudisetiawan.wordpress.com/tag/seleksi-fitur/</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../web2/" class="btn btn-neutral float-right" title="Web Structure Mining">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../web2/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

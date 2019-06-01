@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Web Structure Mining - Nurul Vicky Wahdaniah</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Web Structure Mining";
+    var mkdocs_page_input_path = "web2.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Nurul Vicky Wahdaniah</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../web1/">Web Content Mining</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Web Structure Mining</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#web-crawling-web-structure-mining">WEB CRAWLING (Web Structure Mining)</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#pendahuluan">Pendahuluan</a></li>
+        
+            <li><a class="toctree-l3" href="#tools-and-requirements">Tools and Requirements**</a></li>
+        
+            <li><a class="toctree-l3" href="#proses">Proses</a></li>
+        
+            <li><a class="toctree-l3" href="#references">References</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Nurul Vicky Wahdaniah</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Web Structure Mining</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="web-crawling-web-structure-mining">WEB CRAWLING (Web Structure Mining)</h1>
+<p>Web Structure Mining juga dikenal sebagai "link mining" merupakan sebuah proses untuk mengetahui hubungan antara sebuah link pada web dengan direct linknya.</p>
+<h2 id="pendahuluan">Pendahuluan</h2>
+<p>Halaman ini berisi tentang langkah - langkah crawling link dari sebuah website yaitu https://wiraraja.ac.id/ , kemudian dilanjutkan dengan penggambaran Graph yang menunjukkan alur link - link dalam website tersebut. Hasil akhir dari pengerjaan ini adalah menampilkan graph berarah yang menunjukkan jalur link dan juga menampilkan seluruh link yang terkait dan pagerank masing-masing. Link dan Pagerank ditampilkan urut berdasar nilai PageRank yang terkecil.</p>
+<p>Screen Capture Hasil Running Program :</p>
+<ul>
+<li>Graph :</li>
+</ul>
+<p>https://drive.google.com/open?id=1MKDNJNsAWy-RMmNfAor1fVPRe53yvJHd</p>
+<p><img alt="" src="C:\Users\Hp\AppData\Local\Programs\Python\Python36\Scripts\ppwCrawling\docs\1.png" /></p>
+<ul>
+<li>DataFrame Pagerank :</li>
+</ul>
+<p>https://drive.google.com/open?id=1A5voK4bZsPYIvwzsze7j98M-Fp7kNcEA</p>
+<p>https://drive.google.com/open?id=1CzPCsnvv-CCUZUVo4vNddYty2oOIc9ck</p>
+<p><img alt="" src="C:\Users\Hp\AppData\Local\Programs\Python\Python36\Scripts\ppwCrawling\docs\2.png" /></p>
+<p><img alt="" src="C:\Users\Hp\AppData\Local\Programs\Python\Python36\Scripts\ppwCrawling\docs\3.png" /></p>
+<h2 id="tools-and-requirements">Tools and Requirements**</h2>
+<ol>
+<li>
+<p>Website URL : https://wiraraja.ac.id/</p>
+</li>
+<li>
+<p>Python 3.6</p>
+</li>
+<li>
+<p>Python Libraries :</p>
+</li>
+<li>
+<p>BeautifulSoup4</p>
+<p>Berfungsi untuk mengcrawl data pada website. </p>
+<p>Cara menginstall BeautifulSoup4 menggunakan pip :</p>
+<p><code>pip install beautifulsoup4</code></p>
+</li>
+<li>
+<p>Networkx</p>
+<p>NetworkX adalah library Python untuk pembuatan, manipulasi, dan studi tentang struktur, dinamika, dan fungsi jaringan yang kompleks.</p>
+<p><code>pip install networkx</code></p>
+</li>
+<li>
+<p>Matplotlib</p>
+<p>Matplotlib adalah <em>library</em> paling banyak digunakan oleh <em>data science</em> untuk menyajikan datanya ke dalam visual yang lebih baik. Terdapat <em>plot</em> untuk menampilkan data secara 2D atau 3D.</p>
+<p><code>pip install matplotlib</code></p>
+</li>
+<li>
+<p>Pandas</p>
+<p>Pandas berfungsi untuk memuat file ke dalam tabel Virtual yang disimpan pada RAM. Pandas dapat mengolah suatu data dan mengolahnya seperti <em>join</em>, <em>distinct</em>, <em>group by</em>, agregasi, dan teknik seperti pada SQL. </p>
+<p><code>pip install pandas</code></p>
+</li>
+</ol>
+<h2 id="_1"></h2>
+<h2 id="proses">Proses</h2>
+<blockquote>
+<p>Website URL : https://wiraraja.ac.id/</p>
+</blockquote>
+<p><img alt="1559378129833" src="C:\Users\Hp\AppData\Roaming\Typora\typora-user-images\1559378129833.png" /></p>
+<p>Data yang diambil dari website di atas adalah Link yang terdapat pada website hingga kedalaman 3.</p>
+<h4 id="langkah-proses-crawling"><strong>Langkah Proses Crawling :</strong></h4>
+<h4 id="import-library-yang-akan-digunakan-untuk-crawl-link">import library yang akan digunakan untuk crawl link.</h4>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt
+</code></pre>
+
+<h4 id="membuat-class-fungsi">Membuat class fungsi</h4>
+<p>sebelumnya buat kelas fungsi yang akan digunakan untuk mempermudah pengerjaan</p>
+<ol>
+<li>Class simplifiedURL()</li>
+</ol>
+<p>class fungsi ini akan digunakan untuk mengoreksi/pengecekan link / url website awal yang akan kita crawl dengan 3 kali pengecekan yaitu pada Protokol, Subdomain dan tanda "/" pada akhir url.</p>
+<p><code>def simplifiedURL(url):
+       if "www." in url:
+           ind = url.index("www.")
+           url = url[ind:]
+       if not "http" in url:
+           url = "http://"+url
+       if url[-1] == "/":
+           url = url[:-1]
+       parts = url.split("/")
+       url = ''
+       for i in range(3):
+           url += parts[i] + "/"
+       return url</code></p>
+<ol>
+<li>Class crawl()</li>
+</ol>
+<p>class fungsi ini digunakan untuk mencrawl seluruh link menggunakan parameter url dan kedalaman, kemudian menampilkan seluruh link yang diambil.</p>
+<p><code>def crawl(url, max_deep,  show=False, deep=0, done=[]):
+       global edgelist
+       url = simplifiedURL(url)
+       deep += 1
+       if not url in done:
+           links = getLink(url)
+           done.append(url)
+           if show:
+               if deep == 1:
+                   print("(%d)%s" %(len(links),url))
+               else:
+                   print("|", end="")
+                   for i in range(deep-1): print("--", end="")
+                   print("(%d)%s" %(len(links),url))
+           for link in links:
+               edge = (url,link)
+               if not edge in edgelist:
+                   edgelist.append(edge)
+               if (deep != max_deep):
+                   crawl(link, max_deep, show, deep)</code></p>
+<h4 id="meng-crawl-link-menggunakan-beautifulsoup">Meng-crawl link menggunakan BeautifulSoup</h4>
+<blockquote>
+<p>Class getLink() berfungsi untuk mengambil seluruh link pada website dan memasukkan ke dalam list yang mengembalikan nilai list.</p>
+</blockquote>
+<pre><code>def getLink(src):
+    try:
+        ind = src.find(':')+3
+        url = src[ind:]
+        page = requests.get(src)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        a = soup.findAll('a')
+        temp = []
+        for i in a :
+            try:
+                link = i['href']
+                if not link in temp and 'http' in link :
+                    temp.append(link)
+            except KeyError:
+                pass
+        return temp
+        #print(temp)
+    except:
+        return list()
+
+</code></pre>
+
+<pre><code>root = &quot;https://wiraraja.ac.id/&quot;
+edgelist = []
+s = True
+crawl(root, 3, show=s) //memanggil fungsi crawl()
+</code></pre>
+
+<blockquote>
+<p>setelah link diambil menggunakan class getLink(), selanjutnya yaitu memanggil fungsi crawl() yang telah dibuat sebelumnya untuk mengambil link yang terletak di kedalaman selanjutnya, dan kemudian memasukkan mereka kedalam list "edgelist".</p>
+</blockquote>
+<h4 id="membuat-dataframe-untuk-menjadikan-list-menjadi-tabel">Membuat DataFrame untuk menjadikan list menjadi tabel.</h4>
+<pre><code>edgeListFrame = pd.DataFrame(edgelist, None, (&quot;From&quot;, &quot;To&quot;))
+</code></pre>
+
+<h4 id="membuat-graph-dari-link-dalam-dataframe">Membuat Graph dari link dalam DataFrame</h4>
+<pre><code>g = nx.from_pandas_edgelist(edgeListFrame, &quot;From&quot;, &quot;To&quot;, None, nx.DiGraph())
+pos = nx.random_layout(g)
+</code></pre>
+
+<blockquote>
+<p>"nx.random_layout(g)" digunakan untuk menentukan tipe graph dengan tipe random.</p>
+</blockquote>
+<h4 id="menghitung-pagerank">Menghitung Pagerank</h4>
+<pre><code>pr = nx.pagerank(g)
+</code></pre>
+
+<h4 id="menampilkan-pagerank-dan-link">Menampilkan Pagerank dan Link</h4>
+<pre><code>nodelist = [root]
+nodelist = g.nodes
+label= {}
+data = []
+
+</code></pre>
+
+<blockquote>
+<p>inisialisasi variabel</p>
+</blockquote>
+<pre><code>for i, key in enumerate(nodelist):
+    data.append((pr[key],key))
+    label[key]=i
+</code></pre>
+
+<blockquote>
+<p>Kode diatas berfungsi untuk melakukan perulangan untuk menambahkan/menggabungkan link dengan pageranknya ke dalam list "data"</p>
+</blockquote>
+<pre><code>pd.set_option('display.max_rows', 100)
+</code></pre>
+
+<blockquote>
+<p>Kode diatas digunakan untuk menampilkan semua baris pada data frame. Biasanya penggunaan data frame tidak akan menampilkan seluruh kolom/baris didalamnya, melainkan hari beberapa kolom/baris saja.</p>
+</blockquote>
+<pre><code>tabel = pd.DataFrame(data, columns=(&quot;Pagerank&quot;, &quot;Links&quot;))
+</code></pre>
+
+<blockquote>
+<p>Kode diatas berfungsi untuk membuat data frame dengan 2 kolom dengan value pagerank dan link pada list "data" sebelumnya.</p>
+</blockquote>
+<pre><code>u = tabel.sort_values(by=[&quot;Pagerank&quot;, &quot;Links&quot;], ascending=[True,False])
+</code></pre>
+
+<blockquote>
+<p>Kode diatas digukanan untuk mengurutkan tabel berdasarkan nilai pagerank dari nilai terkecil hingga terbesar.</p>
+</blockquote>
+<pre><code>print(u)
+</code></pre>
+
+<blockquote>
+<p>Menampilkan DataFrame/Tabel </p>
+</blockquote>
+<h4 id="menggambar-dan-menampilkan-graph">Menggambar dan Menampilkan Graph</h4>
+<pre><code>nx.draw(g, pos)
+nx.draw_networkx_labels(g, pos, label)
+</code></pre>
+
+<blockquote>
+<p>Kode diatas berfungsi untuk menggambar Graph </p>
+</blockquote>
+<pre><code>plt.axis(&quot;off&quot;)
+plt.show()
+</code></pre>
+
+<blockquote>
+<p>Kode diatas untuk menampilkan Graph pada Window baru.</p>
+</blockquote>
+<h3 id="kode-program-lengkap-proses"><strong>Kode Program Lengkap Proses  :</strong></h3>
+<pre><code>import requests
+from bs4 import BeautifulSoup
+
+import pandas as pd
+
+import networkx as nx
+import matplotlib.pyplot as plt
+
+def simplifiedURL(url):
+    if &quot;www.&quot; in url:
+        ind = url.index(&quot;www.&quot;)
+        url = url[ind:]
+    if not &quot;http&quot; in url:
+        url = &quot;http://&quot;+url
+    if url[-1] == &quot;/&quot;:
+        url = url[:-1]
+
+    parts = url.split(&quot;/&quot;)
+    url = ''
+    for i in range(3):
+        url += parts[i] + &quot;/&quot;
+    return url
+
+def crawl(url, max_deep,  show=False, deep=0, done=[]):
+    global edgelist
+    url = simplifiedURL(url)
+    deep += 1
+    if not url in done:
+        links = getLink(url)
+        done.append(url)
+        if show:
+            if deep == 1:
+                print(&quot;(%d)%s&quot; %(len(links),url))
+            else:
+                print(&quot;|&quot;, end=&quot;&quot;)
+                for i in range(deep-1): print(&quot;--&quot;, end=&quot;&quot;)
+                print(&quot;(%d)%s&quot; %(len(links),url))
+
+        for link in links:
+            edge = (url,link)
+            if not edge in edgelist:
+                edgelist.append(edge)
+            if (deep != max_deep):
+                crawl(link, max_deep, show, deep)
+
+def getLink(src):
+    try:
+        ind = src.find(':')+3
+        url = src[ind:]
+        page = requests.get(src)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        a = soup.findAll('a')
+        temp = []
+        for i in a :
+            try:
+                link = i['href']
+                if not link in temp and 'http' in link :
+                    temp.append(link)
+            except KeyError:
+                pass
+        return temp
+        #print(temp)
+    except:
+        return list()
+
+root = &quot;https://wiraraja.ac.id/&quot;
+s = True
+edgelist = []
+crawl(root, 3, show=s)
+edgeListFrame = pd.DataFrame(edgelist, None, (&quot;From&quot;, &quot;To&quot;))
+#print(edgelist)
+g = nx.from_pandas_edgelist(edgeListFrame, &quot;From&quot;, &quot;To&quot;, None, nx.DiGraph())
+pos = nx.random_layout(g)
+
+pr = nx.pagerank(g)
+
+print(&quot;-----&quot;)
+nodelist = [root]
+nodelist = g.nodes
+label= {}
+data = []
+for i, key in enumerate(nodelist):
+    data.append((pr[key],key))
+    label[key]=i
+
+pd.set_option('display.max_rows', 100)
+tabel = pd.DataFrame(data, columns=(&quot;Pagerank&quot;, &quot;Links&quot;))
+u = tabel.sort_values(by=[&quot;Pagerank&quot;, &quot;Links&quot;], ascending=[True,False])
+
+print(u)
+
+nx.draw(g, pos)
+nx.draw_networkx_labels(g, pos, label)
+
+plt.axis(&quot;off&quot;)
+plt.show()
+
+</code></pre>
+
+<h2 id="references">References</h2>
+<p><a href="https://wiraraja.ac.id/">https://wiraraja.ac.id/</a></p>
+<p>&lt;<a href="https://codeburst.io/web-crawling-and-scraping-in-python-7116b16d27c7">https://codeburst.io/web-crawling-and-scraping-in-python-7116b16d27c7</a>&gt;</p>
+<p><a href="https://stackoverflow.com/questions/17618981/how-to-sort-pandas-data-frame-using-values-from-several-columns">https://stackoverflow.com/questions/17618981/how-to-sort-pandas-data-frame-using-values-from-several-columns</a></p>
+<p><a href="https://networkx.github.io/">https://networkx.github.io/</a></p>
+<p><a href="https://www.codepolitan.com/5-library-python-untuk-data-science-59b774b6cad97">https://www.codepolitan.com/5-library-python-untuk-data-science-59b774b6cad97</a></p>
+<p><a href="https://www.geeksforgeeks.org/python-pandas-dataframe/">https://www.geeksforgeeks.org/python-pandas-dataframe/</a></p>
+<p><a href="https://stackoverflow.com/questions/50018054/how-to-print-all-rows-of-a-pandas-dataframe-in-the-pycharm-console?noredirect=1&amp;lq=1">https://stackoverflow.com/questions/50018054/how-to-print-all-rows-of-a-pandas-dataframe-in-the-pycharm-console?noredirect=1&amp;lq=1</a></p>
+<p><a href="https://www.youtube.com/watch?v=uIcime2nBjs">https://www.youtube.com/watch?v=uIcime2nBjs</a></p>
+<p><a href="https://www.tutorialride.com/data-mining/web-mining.htm">https://www.tutorialride.com/data-mining/web-mining.htm</a></p>
+<p><a href="https://dzone.com/refcardz/data-mining-discovering-and?chapter=8">https://dzone.com/refcardz/data-mining-discovering-and?chapter=8</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../web1/" class="btn btn-neutral" title="Web Content Mining"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../web1/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
